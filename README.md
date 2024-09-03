@@ -2,148 +2,144 @@
 
 
 
-### 1. **Instalação do Docker**
+# Guia Básico de Docker para Linux Mint
 
-Se ainda não tiver o Docker instalado, siga estes passos para instalar:
+## 1. Instalação do Docker
 
+Atualize a lista de pacotes:
 ```sh
-# Atualizar a lista de pacotes
-sudo apt update
-
-# Instalar pacotes necessários
-sudo apt install apt-transport-https ca-certificates curl software-properties-common
-
-# Adicionar a chave GPG oficial do Docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
-# Adicionar o repositório do Docker
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-
-# Atualizar a lista de pacotes novamente
-sudo apt update
-
-# Instalar o Docker
-sudo apt install docker-ce
-
-# Verificar se o Docker foi instalado corretamente e está funcionando
-sudo systemctl status docker
+  sudo apt update
 ```
 
-### 2. **Comandos Básicos para Gerenciamento de Docker**
-
-#### **Verificar o Status do Docker:**
-
+Instale pacotes necessários:
 ```sh
-sudo systemctl status docker
+  sudo apt install apt-transport-https ca-certificates curl software-properties-common
 ```
 
-#### **Verificar Versão do Docker:**
-
+Adicione a chave GPG oficial do Docker:
 ```sh
-docker --version
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ```
 
-#### **Verificar Imagens Disponíveis:**
-
+Adicione o repositório do Docker:
 ```sh
-docker images
+  sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
-#### **Baixar uma Imagem do Docker Hub:**
-
+Atualize a lista de pacotes novamente:
 ```sh
-docker pull <nome-da-imagem>:<tag>
-# Exemplo:
-docker pull ubuntu:latest
+  sudo apt update
 ```
 
-#### **Verificar Contêineres em Execução:**
-
+Instale o Docker:
 ```sh
-docker ps
+  sudo apt install docker-ce
 ```
 
-#### **Verificar Todos os Contêineres (Executando e Parados):**
-
+Verifique se o Docker foi instalado corretamente e está funcionando:
 ```sh
-docker ps -a
+  sudo systemctl status docker
 ```
 
-#### **Iniciar um Novo Contêiner:**
+## 2. Comandos Básicos para Gerenciamento de Docker
 
+Verifique o status do Docker:
 ```sh
-docker run -d --name <nome-do-contêiner> <nome-da-imagem>:<tag>
-# Exemplo:
-docker run -d --name my-ubuntu-container ubuntu:latest
+  sudo systemctl status docker
 ```
 
-#### **Parar um Contêiner:**
-
+Verifique a versão do Docker:
 ```sh
-docker stop <nome-do-contêiner>
+  docker --version
 ```
 
-#### **Remover um Contêiner:**
-
+Verifique as imagens disponíveis:
 ```sh
-docker rm <nome-do-contêiner>
+  docker images
 ```
 
-#### **Remover uma Imagem:**
-
+Baixe uma imagem do Docker Hub:
 ```sh
-docker rmi <nome-da-imagem>:<tag>
+  docker pull <nome-da-imagem>:<tag>
+  # Exemplo:
+  docker pull ubuntu:latest
 ```
 
-#### **Verificar Logs de um Contêiner:**
-
+Verifique contêineres em execução:
 ```sh
-docker logs <nome-do-contêiner>
+  docker ps
 ```
 
-#### **Acessar o Terminal de um Contêiner em Execução:**
-
+Verifique todos os contêineres (executando e parados):
 ```sh
-docker exec -it <nome-do-contêiner> /bin/bash
+  docker ps -a
 ```
 
-#### **Listar Volumes do Docker:**
-
+Inicie um novo contêiner:
 ```sh
-docker volume ls
+  docker run -d --name <nome-do-contêiner> <nome-da-imagem>:<tag>
+  # Exemplo:
+  docker run -d --name my-ubuntu-container ubuntu:latest
 ```
 
-#### **Remover Volumes Não Usados:**
-
+Pare um contêiner:
 ```sh
-docker volume prune
+  docker stop <nome-do-contêiner>
 ```
 
-### 3. **Gerenciamento com Docker Compose**
-
-Se você estiver usando Docker Compose, você pode precisar instalar o Compose e usar alguns comandos específicos:
-
-#### **Instalar Docker Compose:**
-
+Remova um contêiner:
 ```sh
-sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d '"' -f 4)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
-sudo chmod +x /usr/local/bin/docker-compose
-
-# Verificar versão do Docker Compose
-docker-compose --version
+  docker rm <nome-do-contêiner>
 ```
 
-#### **Iniciar Serviços com Docker Compose:**
-
+Remova uma imagem:
 ```sh
-docker-compose up
+  docker rmi <nome-da-imagem>:<tag>
 ```
 
-#### **Parar e Remover Serviços com Docker Compose:**
-
+Verifique logs de um contêiner:
 ```sh
-docker-compose down
+  docker logs <nome-do-contêiner>
 ```
 
-Com esses comandos, você deve ter uma boa base para começar a trabalhar com Docker em seu sistema Linux Mint. Se precisar de mais detalhes sobre qualquer comando ou quiser explorar mais funcionalidades, sinta-se à vontade para perguntar!
+Acesse o terminal de um contêiner em execução:
+```sh
+  docker exec -it <nome-do-contêiner> /bin/bash
+```
+
+Liste volumes do Docker:
+```sh
+  docker volume ls
+```
+
+Remova volumes não usados:
+```sh
+  docker volume prune
+```
+
+## 3. Gerenciamento com Docker Compose
+
+Instale Docker Compose:
+```sh
+  sudo curl -L "https://github.com/docker/compose/releases/download/$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep tag_name | cut -d '"' -f 4)/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+Dê permissão de execução ao Docker Compose:
+```sh
+  sudo chmod +x /usr/local/bin/docker-compose
+```
+
+Verifique a versão do Docker Compose:
+```sh
+  docker-compose --version
+```
+
+Inicie serviços com Docker Compose:
+```sh
+  docker-compose up
+```
+
+Pare e remova serviços com Docker Compose:
+```sh
+  docker-compose down
+```
