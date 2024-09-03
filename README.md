@@ -1,6 +1,6 @@
 # Docker-Commands
 
-Claro! Aqui está um conjunto de comandos básicos do Docker para Linux Mint, organizados em uma ordem prática para te ajudar a começar a usar Docker. Vou incluir comandos para instalação, verificação, gerenciamento de contêineres e imagens, e outros aspectos básicos.
+
 
 ### 1. **Instalação do Docker**
 
